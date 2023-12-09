@@ -7,7 +7,19 @@ El siguiente contenedor configura un servidor de correos con postfix.
 ```
 chmod +x install-docker.sh
 ./install-docker.sh
-apt  install docker-compose 
+apt install docker-compose 
+```
+
+### Configure nameserver
+Configure con el editor de texto de su preferencia el archivo: resolv.conf
+Adicione el nameserver con la ip del host
+```
+nano /etc/resolv.conf
+---------------------
+nameserver {IP_HOST}
+nameserver 127.0.0.53
+options edns0 trust-ad
+search .
 ```
 
 ## Docker compose
@@ -24,4 +36,3 @@ Ejecute el siguiente comando e intente de nuevo ejecutar el docker-compose:
 ```
 systemctl stop systemd-resolved
 ```
-

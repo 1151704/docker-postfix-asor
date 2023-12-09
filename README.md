@@ -10,7 +10,7 @@ chmod +x install-docker.sh
 apt install docker-compose 
 ```
 
-### Configure nameserver
+### Configure los nameserver
 Configure con el editor de texto de su preferencia el archivo: resolv.conf
 Adicione el nameserver con la ip del host
 ```
@@ -21,6 +21,11 @@ nameserver 127.0.0.53
 options edns0 trust-ad
 search .
 ```
+
+### Configure los DNS del host
+En Windows debe configurar el protocoto (TCP/IPv4)
+![TCP/IPv4](https://github.com/[username]/[reponame]/blob/[branch]/img/dns_windows.png?raw=true)
+
 
 ## Docker compose
 

@@ -15,3 +15,13 @@ apt  install docker-compose
 ```
 docker-compose up -d
 ```
+
+### Error de puerto:
+Si se encuentra con el siguiente error:
+*Error starting userland proxy: listen tcp4 0.0.0.0:53: bind: address already*
+
+Ejecute el siguiente comando e intente de nuevo ejecutar el docker-compose: 
+```
+systemctl stop systemd-resolved
+```
+

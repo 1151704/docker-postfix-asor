@@ -1,0 +1,19 @@
+$TTL    604800
+@       IN      SOA     ns.postfixasor.com. root.postfixasor.com. (
+                             2023120901     ; serial
+                                 604800     ; refresh in seconds
+                                  86400     ; retry
+                                2419200     ; expire
+                                 604800     ; minimum
+)
+
+                NS      ns ;
+ns              A       192.168.1.7
+www             A       192.168.1.7
+postfixasor.com.     A       192.168.1.7
+
+postfixasor.com.     IN      MX      10      correo.postfixasor.com.
+
+pop3            IN      CNAME   postfixasor.com.
+smtp            IN      CNAME   postfixasor.com.
+correo          IN      CNAME   postfixasor.com.

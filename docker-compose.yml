@@ -1,0 +1,15 @@
+version: '1.0'
+services:
+    coredns:
+        build:
+          context: ./dns
+        container_name: asor-coredns
+        restart: always
+        expose:
+            - '53'
+            - '53/udp'
+        ports:
+            - '53:53'
+            - '53:53/udp'
+        volumes:
+            - './dns:/etc/coredns'

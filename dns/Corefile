@@ -1,0 +1,11 @@
+.:53 {
+    forward . 8.8.8.8
+    log
+    errors
+}
+
+postfixasor.com:53 {
+    file /etc/coredns/db.postfixasor.com
+    log
+    errors
+}

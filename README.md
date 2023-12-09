@@ -24,9 +24,8 @@ search .
 
 ### Configure los DNS del host
 En Windows debe configurar el protocoto (TCP/IPv4)
-<div style="text-align:center">
+
 ![TCP/IPv4](https://github.com/1151704/docker-postfix-asor/blob/main/img/dns_windows.png?raw=true)
-</div>
 
 
 ## Docker compose

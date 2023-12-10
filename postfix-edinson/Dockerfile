@@ -2,7 +2,13 @@
 FROM ubuntu:latest
 
 # Actualiza los repositorios e instala Postfix, Dovecot, Nginx y PHP
-RUN apt-get update && apt-get install -y postfix dovecot-core dovecot-imapd dovecot-pop3d nginx php-fpm php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip
+RUN apt-get update 
+RUN { \
+        echo postfix postfix/mailname string 'postfixasor.com'; \
+        echo postfix postfix/main_mailer_type string 'Internet Site'; \
+    } | debconf-set-selections
+RUN apt-get install --assume-yes postfix
+RUN apt-get dovecot-core dovecot-imapd dovecot-pop3d nginx php-fpm php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip -y
 
 # Configura Postfix y Dovecot
 COPY postfix-main.cf /etc/postfix/main.cf

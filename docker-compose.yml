@@ -20,6 +20,7 @@ services:
           context: ./postfix
         container_name: asor-postfix
         restart: always
+        hostname: postfixasor.com
         expose:
             - '25'
             - '110'
@@ -41,6 +42,8 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=roundcube-mysql-pw
             - MYSQL_DATABASE=roundcubemail
+        networks:
+            - custom_network
     roundcubemail:
         image: roundcube/roundcubemail:latest
         container_name: roundcubemail
@@ -57,8 +60,10 @@ services:
             - ROUNDCUBEMAIL_DB_HOST=roundcubedb
             - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
             - ROUNDCUBEMAIL_SKIN=elastic
-            - ROUNDCUBEMAIL_DEFAULT_HOST=postfixasor.com
+            - ROUNDCUBEMAIL_DEFAULT_HOST=mail.postfixasor.com
             - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
+        networks:
+            - custom_network
 networks:
   custom_network:
     driver: bridge

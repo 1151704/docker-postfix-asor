@@ -24,7 +24,10 @@ ENTRYPOINT ["/run.sh"]
 # docker build -t test-postfix .
 
 # docker container
-# docker run -d -p 25:25 --name test-postfix --hostname postfixasor.com test-postfix
+# docker run -d -p 25:25 -p 110:110 -p 995:995 --name test-postfix --hostname postfixasor.com test-postfix
 
 # access to container
 # docker exec -it test-postfix /bin/bash
+
+# romove container
+# docker stop test-postfix && docker rm test-postfix

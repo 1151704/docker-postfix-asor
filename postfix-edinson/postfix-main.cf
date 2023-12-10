@@ -1,11 +1,20 @@
 # Configuración básica de Postfix
-myhostname = mail.postfixasor.com
-mydomain = postfixasor.com
-myorigin = $mydomain
-inet_interfaces = all
-inet_protocols = all
-mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
-mynetworks = 127.0.0.0/8
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated
+myhostname = postfixasor.com
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = /etc/mailname
+mydestination = $myhostname, localhost.$mydomain, localhost.com, $mydomain
+relayhost = 
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 192.168.20.0/24
 
 # Configuración de buzones de correo
 home_mailbox = Maildir/
+mailbox_command =
+mailbox_size_limit = 0
+
+recipient_delimiter = +
+
+inet_interfaces = all
+inet_protocols = all
+

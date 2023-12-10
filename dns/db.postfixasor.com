@@ -8,9 +8,9 @@ $TTL    604800
 )
 
                      NS      ns ;
-ns                   A       192.168.1.11
-www                  A       192.168.1.11
-postfixasor.com.     A       192.168.1.11
+ns                   A       192.168.20.21
+www                  A       192.168.20.21
+postfixasor.com.     A       192.168.20.21
 
 postfixasor.com.     IN      MX      10      mail.postfixasor.com.
 

@@ -11,13 +11,11 @@ RUN apt-get install --assume-yes postfix
 #RUN apt-get dovecot-core dovecot-imapd dovecot-pop3d nginx php-fpm php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip -y
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        bsd-mailx \
         dovecot-core \
         dovecot-imapd \
         dovecot-pop3d \
         mysql-server \
         nginx \
-        roundcube \
         php-fpm \
         php-common \
         php-mbstring \
@@ -47,20 +45,16 @@ RUN sed -i 's/^# *mail_location = maildir:~\/Maildir/mail_location = maildir:~\/
 
 # Instala Roundcube
 #RUN apt-get install -y wget unzip
-#RUN apt-get update && apt-get install -y wget unzip  
-RUN mv /var/lib/roundcube /var/www/roundcube 
+RUN apt-get update && apt-get install -y wget unzip  
+RUN wget -O /tmp/roundcube.tar.gz https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz \
+    && tar -C /var/www/ -xzvf /tmp/roundcube.tar.gz \
+    && mv /var/www/roundcubemail-1.5.2 /var/www/roundcube \
+    && rm /tmp/roundcube.tar.gz
 
 # Configura Nginx para servir Roundcube
 # COPY roundcube /var/www/roundcube
 COPY roundcube.conf /etc/nginx/sites-available/roundcube.conf
 RUN ln -s /etc/nginx/sites-available/roundcube.conf /etc/nginx/sites-enabled/roundcube.conf
-
-# Reemplazar las líneas en el archivo config.inc.php de Roundcube
-RUN sed -i "s/\$config\['default_host'\] = '';/\$config\['default_host'\] = 'postfixasor.com';/" /etc/roundcube/config.inc.php && \
-    sed -i "s/\$config\['smtp_server'\] = 'localhost';/\$config\['smtp_server'\] = 'postfixasor.com';/" /etc/roundcube/config.inc.php && \
-    sed -i "s/\$config\['smtp_port'\] = 587;/\$config\['smtp_port'\] = 25;/" /etc/roundcube/config.inc.php && \
-    sed -i "s/\$config\['smtp_user'\] = '%u';/\$config\['smtp_user'\] = '';/" /etc/roundcube/config.inc.php
-
 
 # Abre los puertos necesarios para SMTP, IMAP, POP3 y HTTP
 EXPOSE 25 143 110 80

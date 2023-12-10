@@ -15,6 +15,22 @@ services:
             - './dns:/etc/coredns'
         networks:
             - custom_network
+
+    postfix:
+        build:
+          context: ./postfix-edinson
+        container_name: postfix-email
+        restart: always
+        expose:
+            - '25' 
+            - '143'
+            - '110'
+            - '80'
+        ports:
+            - '25:25' 
+            - '143:143'
+            - '110:110'
+            - '80:80'
     
 networks:
   custom_network:

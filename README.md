@@ -17,6 +17,7 @@ Adicione el nameserver con la ip del host
 nano /etc/resolv.conf
 ---------------------
 nameserver {IP_HOST}
+nameserver 8.8.8.8
 nameserver 127.0.0.53
 options edns0 trust-ad
 search .

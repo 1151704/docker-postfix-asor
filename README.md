@@ -43,3 +43,8 @@ Ejecute el siguiente comando e intente de nuevo ejecutar el docker-compose:
 ```
 systemctl stop systemd-resolved
 ```
+
+## Crear usuarios
+```
+docker exec asor-postfix create_user.sh {user} {password}
+```

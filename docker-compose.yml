@@ -13,6 +13,8 @@ services:
             - '53:53/udp'
         volumes:
             - './dns:/etc/coredns'
+        networks:
+            - custom_network
     postfix:
         image: daone/postfix-dovecot
         container_name: asor-postfix
@@ -29,3 +31,9 @@ services:
             - '143:143'
             - '465:465'
             - '993:993'
+        networks:
+            - custom_network
+
+networks:
+  custom_network:
+    driver: bridge

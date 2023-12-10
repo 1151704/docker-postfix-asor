@@ -1,0 +1,11 @@
+# Configuración básica de Postfix
+myhostname = mail.postfixasor.com
+mydomain = postfixasor.com
+myorigin = $mydomain
+inet_interfaces = all
+inet_protocols = all
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mynetworks = 127.0.0.0/8
+
+# Configuración de buzones de correo
+home_mailbox = Maildir/

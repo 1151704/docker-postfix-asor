@@ -13,8 +13,14 @@ RUN apt-get install --assume-yes postfix
 RUN apt-get install net-tools nano bsd-mailx dovecot-pop3d rsyslog -y
 RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf 
 
-RUN useradd -m -G mail -p pass1 user1 && touch /var/mail/user1 && chown user1:mail /var/mail/user1
-RUN useradd -m -G mail -p pass2 user2 && touch /var/mail/user2 && chown user2:mail /var/mail/user2
+#RUN useradd -m -G mail -p pass1 user1 && touch /var/mail/user1 && chown user1:mail /var/mail/user1
+#RUN useradd -m -G mail -p pass2 user2 && touch /var/mail/user2 && chown user2:mail /var/mail/user2
+RUN adduser --disabled-password --gecos "" user1
+RUN echo 'user1:pass1' | chpasswd
+RUN adduser --disabled-password --gecos "" user2
+RUN echo 'user2:pass1' | chpasswd
+RUN adduser --disabled-password --gecos "" edinson
+RUN echo 'edinson:1234' | chpasswd
 
 COPY main.cf /etc/postfix/main.cf
 #RUN echo "disable_plaintext_auth = no" >> /etc/dovecot/conf.d/10-auth.conf

@@ -15,6 +15,29 @@ services:
             - './dns:/etc/coredns'
         networks:
             - custom_network
+    postfix:
+        image: cisagov/postfix
+        init: true
+        restart: always
+        environment:
+            - PRIMARY_DOMAIN=postfixasor.com
+        expose:
+            - '25'
+            - '25/tcp'
+            - '587'
+            - '587/tcp'
+            - '993'
+            - '993/tcp'
+        ports:
+            - '25:25'
+            - '25:25/tcp'
+            - '587:587'
+            - '587:587/tcp'
+            - '993:993'
+            - '993:993/tcp'
+        networks:
+            - custom_network
+    
 networks:
   custom_network:
     driver: bridge

@@ -19,3 +19,9 @@ RUN useradd -m -G mail -p pass2 user2 && touch /var/mail/user2 && chown user2:ma
 ADD run.sh /
 RUN chmod +x run.sh
 ENTRYPOINT ["/run.sh"]
+
+# docker image
+# docker build -t test-postfix .
+
+# docker container
+# docker run -d -p 25:25 --name test-postfix --hostname postfixasor.com test-postfix

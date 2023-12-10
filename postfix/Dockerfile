@@ -2,8 +2,13 @@ FROM ubuntu:20.04
 
 RUN apt-get update
 
-RUN debconf-set-selections <<< "postfix postfix/mailname string postfixasor.com"
-RUN debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+#RUN debconf-set-selections <<< "postfix postfix/mailname string postfixasor.com"
+#RUN debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+
+RUN { \
+        echo postfix postfix/mailname string 'postfixasor.com'; \
+        echo postfix postfix/main_mailer_type string 'Internet Site'; \
+    } | debconf-set-selections
 RUN apt-get install --assume-yes postfix
 RUN apt-get install rsyslog -y
 RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf 

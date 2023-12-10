@@ -10,15 +10,19 @@ chmod +x install-docker.sh
 apt install docker-compose 
 ```
 
+### Configure el hostname
+hostnamectl set-hostname postfixasor.com
+
 ### Configure los nameserver
 Configure con el editor de texto de su preferencia el archivo: resolv.conf
-Adicione el nameserver con la ip del host
+Adicione el nameserver con la ip del host, y nombre del dominio
 ```
 nano /etc/resolv.conf
 ---------------------
 nameserver {IP_HOST}
 nameserver 8.8.8.8
 nameserver 127.0.0.53
+domain {NAME_DOMAIN}
 options edns0 trust-ad
 search .
 ```

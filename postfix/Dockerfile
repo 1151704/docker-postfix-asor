@@ -21,8 +21,8 @@ COPY main.cf /etc/postfix/main.cf
 #RUN echo "mail_location = maildir:~/Maildir" >> /etc/dovecot/conf.d/10-mail.conf
 
 RUN sed -i 's/^#disable_plaintext_auth = yes/disable_plaintext_auth = no/' /etc/dovecot/conf.d/10-auth.conf
+RUN sed -i 's/^mail_location = */#miail_location = /' /etc/dovecot/conf.d/10-mail.conf
 RUN sed -i 's/^# *mail_location = maildir:~\/Maildir/mail_location = maildir:~\/Maildir/' /etc/dovecot/conf.d/10-mail.conf
-RUN sed -i 's/^mail_location = */#mail_location = /' /etc/dovecot/conf.d/10-mail.conf
 
 ADD run.sh /
 RUN chmod +x run.sh

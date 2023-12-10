@@ -17,7 +17,7 @@ services:
             - custom_network
     postfix:
         image: cisagov/postfix
-        init: true
+        container_name: asor-postfix
         restart: always
         environment:
             - PRIMARY_DOMAIN=postfixasor.com

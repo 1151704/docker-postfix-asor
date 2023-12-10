@@ -11,9 +11,13 @@ apt install docker-compose
 ```
 
 ### Configure el hostname
+
+```
 hostnamectl set-hostname postfixasor.com
+```
 
 ### Configure los nameserver
+
 Configure con el editor de texto de su preferencia el archivo: resolv.conf
 Adicione el nameserver con la ip del host, y nombre del dominio
 ```
@@ -28,6 +32,7 @@ search .
 ```
 
 ### Configure los DNS del host
+
 En Windows debe configurar el protocoto (TCP/IPv4)
 
 ![TCP/IPv4](https://github.com/1151704/docker-postfix-asor/blob/main/img/dns_windows.png?raw=true)
@@ -40,6 +45,7 @@ docker-compose up -d
 ```
 
 ### Error de puerto:
+
 Si se encuentra con el siguiente error:
 *Error starting userland proxy: listen tcp4 0.0.0.0:53: bind: address already*
 
@@ -49,6 +55,7 @@ systemctl stop systemd-resolved
 ```
 
 ## Crear usuarios
+
 ```
 docker exec asor-postfix create_user.sh {user} {password}
 ```

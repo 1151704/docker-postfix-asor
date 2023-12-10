@@ -16,7 +16,7 @@ services:
         networks:
             - custom_network
     postfix:
-        container_name: 'asor-postfix'
+        container_name: asor-postfix
         image: 'humpedli/docker-postfix-dovecot'
         ports:
             - '25:25'
@@ -39,7 +39,7 @@ services:
         restart: 'always'
     mysql:
         image: mysql:5.7
-        container_name: 'asor-postfix'
+        container_name: asor-mysql
         restart: always
         environment:
             - MYSQL_DATABASE=postfix

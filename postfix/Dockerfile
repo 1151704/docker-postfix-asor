@@ -10,7 +10,7 @@ RUN { \
         echo postfix postfix/main_mailer_type string 'Internet Site'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes postfix
-RUN apt-get install bsd-mailx rsyslog -y
+RUN apt-get install nano bsd-mailx dovecot-pop3d rsyslog -y
 RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf 
 
 RUN useradd -m -G mail -p pass1 user1 && touch /var/mail/user1 && chown user1:mail /var/mail/user1
@@ -25,3 +25,6 @@ ENTRYPOINT ["/run.sh"]
 
 # docker container
 # docker run -d -p 25:25 --name test-postfix --hostname postfixasor.com test-postfix
+
+# access to container
+# docker exec -it test-postfix /bin/bash

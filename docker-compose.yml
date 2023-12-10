@@ -15,27 +15,6 @@ services:
             - './dns:/etc/coredns'
         networks:
             - custom_network
-    postfix:
-        image: cisagov/postfix
-        container_name: asor-postfix
-        restart: always
-        environment:
-            - PRIMARY_DOMAIN=postfixasor.com
-        ports:
-            - target: "25"
-              published: "1025"
-              protocol: tcp
-              mode: host
-            - target: "587"
-              published: "1587"
-              protocol: tcp
-              mode: host
-            - target: "993"
-              published: "1993"
-              protocol: tcp
-              mode: host
-        networks:
-            - custom_network
     
 networks:
   custom_network:

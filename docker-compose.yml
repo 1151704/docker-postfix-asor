@@ -21,20 +21,19 @@ services:
         restart: always
         environment:
             - PRIMARY_DOMAIN=postfixasor.com
-        expose:
-            - '25'
-            - '25/tcp'
-            - '587'
-            - '587/tcp'
-            - '993'
-            - '993/tcp'
         ports:
-            - '25:25'
-            - '25:25/tcp'
-            - '587:587'
-            - '587:587/tcp'
-            - '993:993'
-            - '993:993/tcp'
+            - target: "25"
+              published: "1025"
+              protocol: tcp
+              mode: host
+            - target: "587"
+              published: "1587"
+              protocol: tcp
+              mode: host
+            - target: "993"
+              published: "1993"
+              protocol: tcp
+              mode: host
         networks:
             - custom_network
     

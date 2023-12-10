@@ -55,7 +55,7 @@ services:
             - roundcubedb
         volumes:
             - ./www:/var/www/html
-            - ./:/var/roundcube/config/
+            - ./roundcube:/var/roundcube/config/
         ports:
             - '9001:80'
         environment:

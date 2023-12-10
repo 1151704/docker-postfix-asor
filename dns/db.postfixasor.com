@@ -7,10 +7,10 @@ $TTL    604800
                                  604800     ; minimum
 )
 
-                NS      ns ;
-ns              A       192.168.1.7
-www             A       192.168.1.7
-postfixasor.com.     A       192.168.1.7
+                     NS      ns ;
+ns                   A       192.168.1.11
+www                  A       192.168.1.11
+postfixasor.com.     A       192.168.1.11
 
 postfixasor.com.     IN      MX      10      mail.postfixasor.com.
 

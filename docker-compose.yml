@@ -15,7 +15,50 @@ services:
             - './dns:/etc/coredns'
         networks:
             - custom_network
-    
+    postfix:
+        build:
+          context: ./postfix
+        container_name: asor-postfix
+        restart: always
+        expose:
+            - '25'
+            - '110'
+            - '995'
+        ports:
+            - '25:25'
+            - '110:110'
+            - '995:995'
+        networks:
+            - custom_network
+    roundcubedb:
+        image: mysql:5.7
+        container_name: roundcubedb
+        volumes:
+            - ./db/mysql:/var/lib/mysql
+        ports:
+            - 34010:5432
+            - 33006:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=roundcube-mysql-pw
+            - MYSQL_DATABASE=roundcubemail
+    roundcubemail:
+        image: roundcube/roundcubemail:latest
+        container_name: roundcubemail
+        depends_on:
+            - roundcubedb
+        links:
+            - roundcubedb
+        volumes:
+            - ./www:/var/www/html
+        ports:
+            - '9001:80'
+        environment:
+            - ROUNDCUBEMAIL_DB_TYPE=mysql
+            - ROUNDCUBEMAIL_DB_HOST=roundcubedb
+            - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
+            - ROUNDCUBEMAIL_SKIN=elastic
+            - ROUNDCUBEMAIL_DEFAULT_HOST=postfixasor.com
+            - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
 networks:
   custom_network:
     driver: bridge

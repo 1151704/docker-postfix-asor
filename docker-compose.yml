@@ -49,7 +49,7 @@ services:
     roundcubemail:
         image: roundcube/roundcubemail:latest
         container_name: roundcubemail
-        hostname: postfixasor.com
+        hostname: mail.postfixasor.com
         depends_on:
             - roundcubedb
         links:
@@ -64,7 +64,7 @@ services:
             - ROUNDCUBEMAIL_DB_HOST=roundcubedb
             - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
             - ROUNDCUBEMAIL_SKIN=elastic
-            - ROUNDCUBEMAIL_DEFAULT_HOST=postfixasor.com
+            - ROUNDCUBEMAIL_DEFAULT_HOST=mail.postfixasor.com
             - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
             - ROUNDCUBEMAIL_SMTP_PORT=25
         networks:

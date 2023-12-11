@@ -4,3 +4,8 @@
   $config['smtp_port'] = 25;
   $config['smtp_user'] = '';
   $config['smtp_pass'] = '%p';
+  $config['smtp_conn_options'] = [
+    'ssl' => [
+        'verify_peer_name'  => false,
+    ],
+  ];

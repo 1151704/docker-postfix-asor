@@ -49,6 +49,7 @@ services:
     roundcubemail:
         image: roundcube/roundcubemail:latest
         container_name: roundcubemail
+        hostname: postfixasor.com
         depends_on:
             - roundcubedb
         links:

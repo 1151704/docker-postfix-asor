@@ -1,1 +1,2 @@
-$config['smtp_user'] = '';
+<?php
+  $config['smtp_user'] = '';

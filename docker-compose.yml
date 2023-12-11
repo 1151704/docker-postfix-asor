@@ -73,3 +73,7 @@ services:
 networks:
   custom_network:
     driver: bridge
+    name: custom_network
+    ipam: 
+      config:
+        - subnet: 172.19.0.0/24

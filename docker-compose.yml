@@ -88,4 +88,4 @@ networks:
         - subnet: 172.19.0.0/24
           gateway: 172.19.0.1
           aux_addresses:
-            dbmysql: 172.19.0.23
+            asor-db: 172.19.0.23

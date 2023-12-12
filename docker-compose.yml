@@ -39,6 +39,7 @@ services:
             - custom_network
     adminer:
         image: adminer
+        container_name: asor-adminer
         restart: always
         ports:
             - 8080:8080
@@ -47,8 +48,8 @@ services:
     dbmysql:
         image: mysql:5.7
         container_name: asor-db
-        volumes:
-            - ./db/mysql:/var/lib/mysql
+        # volumes:
+        #     - ./db/mysql:/var/lib/mysql
         ports:
             - '3306:3306'
         environment:
@@ -93,4 +94,3 @@ networks:
     ipam: 
       config:
         - subnet: 172.19.0.0/24
-          gateway: 172.19.0.1

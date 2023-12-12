@@ -58,7 +58,7 @@ services:
             - ./www:/var/www/html
             - ./roundcube:/var/roundcube/config/
         ports:
-            - '9001:80'
+            - '80:80'
         environment:
             - ROUNDCUBEMAIL_DB_TYPE=mysql
             - ROUNDCUBEMAIL_DB_HOST=roundcubedb

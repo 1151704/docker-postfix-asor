@@ -22,9 +22,9 @@ services:
         restart: always
         hostname: postfixasor.com
         depends_on:
-            - db
+            - dbmysql
         links:
-            - db
+            - dbmysql
         expose:
             - '25'
             - '80'
@@ -39,7 +39,7 @@ services:
             - '995:995'
         networks:
             - custom_network
-    db:
+    dbmysql:
         image: mysql:5.7
         container_name: asor-db
         volumes:
@@ -50,6 +50,8 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=roundcude2023
             - MYSQL_DATABASE=roundcude
+            - MYSQL_USER=user1
+            - MYSQL_PASSWORD=passuser1
         networks:
             - custom_network
     # roundcubemail:

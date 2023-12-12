@@ -18,7 +18,7 @@ RUN { \
         echo roundcube-core roundcube/db/app-user string 'roundcube'; \
         echo roundcube-core roundcube/db/dbname string 'roundcubedb'; \
     } | debconf-set-selections
-RUN apt-get install roundcube
+RUN apt-get install --assume-yes roundcube
 
 ADD create-user.sh /
 RUN chmod +x create-user.sh

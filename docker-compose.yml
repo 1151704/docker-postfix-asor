@@ -37,6 +37,11 @@ services:
             - '995:995'
         networks:
             - custom_network
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
     dbmysql:
         image: mysql:5.7
         container_name: asor-db

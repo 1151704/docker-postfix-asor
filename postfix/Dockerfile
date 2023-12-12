@@ -17,13 +17,7 @@ RUN apt-get install -y mysql-server
 RUN service mysql start
 
 RUN { \
-        echo roundcube-core roundcube/dbconfig-install boolean true; \
-        echo roundcube-core roundcube/mysql/admin-pass password 'root'; \
-        echo roundcube-core roundcube/mysql/app-pass password 'root'; \
-        echo roundcube-core roundcube/app-password-confirm password 'root'; \
-        echo roundcube-core roundcube/mysql/admin-user string 'root'; \
-        echo roundcube-core roundcube/db/app-user string 'roundcube'; \
-        echo roundcube-core roundcube/db/dbname string 'roundcube'; \
+        echo roundcube-core roundcube/dbconfig-install select 'ignore'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes roundcube
 

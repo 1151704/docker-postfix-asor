@@ -21,10 +21,8 @@ services:
         container_name: asor-postfix
         restart: always
         hostname: postfixasor.com
-        depends_on:
-            - dbmysql
         links:
-            - dbmysql
+            - dbmysql:dbmysql
         expose:
             - '25'
             - '80'

@@ -7,7 +7,7 @@ RUN { \
         echo postfix postfix/main_mailer_type string 'Internet Site'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes postfix
-RUN apt-get install net-tools nano apache2 bsd-mailx dovecot-pop3d dovecot-imapd -y
+RUN apt-get install net-tools nano mysql-client apache2 bsd-mailx dovecot-pop3d dovecot-imapd -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install roundcube -y
 
 ADD create-user.sh /

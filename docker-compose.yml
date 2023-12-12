@@ -62,7 +62,7 @@ services:
             # - MYSQL_USER=user1
             # - MYSQL_PASSWORD=passuser1
         networks:
-            custom_network
+            - custom_network
     # roundcubemail:
     #     image: roundcube/roundcubemail:latest
     #     container_name: roundcubemail

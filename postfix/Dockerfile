@@ -7,19 +7,8 @@ RUN { \
         echo postfix postfix/main_mailer_type string 'Internet Site'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes postfix
-RUN apt-get install net-tools nano bsd-mailx dovecot-pop3d dovecot-imapd -y
-
-# RUN { \
-#         echo mysql-server mysql-server/root_password password 'root'; \
-#         echo mysql-server mysql-server/root_password password 'root'; \
-#     } | debconf-set-selections
-# RUN apt-get install -y mysql-server apache2
-# RUN service mysql start
-
-# RUN { \
-#         echo roundcube-core roundcube/dbconfig-install select 'ignore'; \
-#     } | debconf-set-selections
-# RUN apt-get install --assume-yes roundcube
+RUN apt-get install net-tools nano bsd-mailx dovecot-pop3d dovecot-imapd rsyslog -y
+RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf 
 
 ADD create-user.sh /
 RUN chmod +x create-user.sh
@@ -40,6 +29,7 @@ RUN sed -i 's/^# *mail_location = maildir:~\/Maildir/mail_location = maildir:~\/
 
 EXPOSE 25 110 143 995
 
+RUN service rsyslog restart
 RUN service postfix restart
 RUN service dovecot restart
 # RUN service apache2 restart

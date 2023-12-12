@@ -35,7 +35,7 @@ services:
             - custom_network
     roundcubedb:
         image: mysql:5.7
-        container_name: roundcubedb
+        container_name: asor-db
         volumes:
             - ./db/mysql:/var/lib/mysql
         ports:
@@ -48,7 +48,7 @@ services:
             - custom_network
     roundcubemail:
         image: roundcube/roundcubemail:latest
-        container_name: roundcubemail
+        container_name: asor-roundcube
         hostname: postfixasor.com
         depends_on:
             - roundcubedb
@@ -72,8 +72,8 @@ services:
 
 networks:
   custom_network:
-    # driver: bridge
-    # name: custom_network
-    # ipam: 
-    #   config:
-    #     - subnet: 172.19.0.0/24
+    driver: bridge
+    name: custom_network
+    ipam: 
+      config:
+        - subnet: 172.19.0.0/24

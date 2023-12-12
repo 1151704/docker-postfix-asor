@@ -2,6 +2,9 @@
 
 $config = [];
 
+// DATABASE
+$config['db_dsnw'] = 'mysql://root:roundcude2023@db:3306/asor-roundcude';
+
 // The IMAP host chosen to perform the log-in.
 $config['default_host'] = 'postfixasor.com';
 

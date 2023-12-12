@@ -26,7 +26,6 @@ RUN cd /etc/apache2/sites-enabled/ && a2ensite roundcube.conf
 
 EXPOSE 25 80 110 143 995
 
-RUN service rsyslog restart
 RUN service postfix restart
 RUN service dovecot restart
 RUN service apache2 restart

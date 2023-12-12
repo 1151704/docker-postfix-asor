@@ -7,19 +7,19 @@ RUN { \
         echo postfix postfix/main_mailer_type string 'Internet Site'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes postfix
-RUN apt-get install net-tools nano apache2 bsd-mailx dovecot-pop3d dovecot-imapd -y
+RUN apt-get install net-tools nano bsd-mailx dovecot-pop3d dovecot-imapd -y
 
-RUN { \
-        echo mysql-server mysql-server/root_password password 'root'; \
-        echo mysql-server mysql-server/root_password password 'root'; \
-    } | debconf-set-selections
-RUN apt-get install -y mysql-server
-RUN service mysql start
+# RUN { \
+#         echo mysql-server mysql-server/root_password password 'root'; \
+#         echo mysql-server mysql-server/root_password password 'root'; \
+#     } | debconf-set-selections
+# RUN apt-get install -y mysql-server apache2
+# RUN service mysql start
 
-RUN { \
-        echo roundcube-core roundcube/dbconfig-install select 'ignore'; \
-    } | debconf-set-selections
-RUN apt-get install --assume-yes roundcube
+# RUN { \
+#         echo roundcube-core roundcube/dbconfig-install select 'ignore'; \
+#     } | debconf-set-selections
+# RUN apt-get install --assume-yes roundcube
 
 ADD create-user.sh /
 RUN chmod +x create-user.sh
@@ -34,15 +34,14 @@ RUN sed -i 's/^#disable_plaintext_auth = yes/disable_plaintext_auth = no/' /etc/
 RUN sed -i 's/^mail_location = */#miail_location = /' /etc/dovecot/conf.d/10-mail.conf
 RUN sed -i 's/^# *mail_location = maildir:~\/Maildir/mail_location = maildir:~\/Maildir/' /etc/dovecot/conf.d/10-mail.conf
 
-ADD roundcube.conf /etc/apache2/sites-available/
-RUN cd /etc/apache2/sites-enabled/ && a2ensite roundcube.conf
+# ADD roundcube.conf /etc/apache2/sites-available/
+# RUN cd /etc/apache2/sites-enabled/ && a2ensite roundcube.conf
+# COPY config.inc.php /etc/roundcube/config.inc.php
 
-COPY config.inc.php /etc/roundcube/config.inc.php
-
-EXPOSE 25 80 110 143 995
+EXPOSE 25 110 143 995
 
 RUN service postfix restart
 RUN service dovecot restart
-RUN service apache2 restart
+# RUN service apache2 restart
 
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["tail", "-f", "/var/log/mail.log"]

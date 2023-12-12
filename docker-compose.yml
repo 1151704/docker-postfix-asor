@@ -35,32 +35,32 @@ services:
             - '995:995'
         networks:
             - custom_network
-    adminer:
-        image: adminer
-        container_name: asor-adminer
-        restart: always
-        ports:
-            - '8080:8080'
-        networks:
-            - custom_network
-    dbmysql:
-        image: mysql:5.7
-        container_name: asor-db
-        # volumes:
-        #     - ./db/mysql:/var/lib/mysql
-        ports:
-            - '3306:3306'
-        environment:
-            - MYSQL_DATABASE=roundcube
-            - MYSQL_ROOT_PASSWORD=root
-            # - MYSQL_ROOT_PASSWORD=roundcube2023
-            # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            # - MYSQL_ROOT_HOST="%"
-            # - MYSQL_DATABASE=roundcube
-            # - MYSQL_USER=user1
-            # - MYSQL_PASSWORD=passuser1
-        networks:
-            - custom_network
+    # adminer:
+    #     image: adminer
+    #     container_name: asor-adminer
+    #     restart: always
+    #     ports:
+    #         - '8080:8080'
+    #     networks:
+    #         - custom_network
+    # dbmysql:
+    #     image: mysql:5.7
+    #     container_name: asor-db
+    #     # volumes:
+    #     #     - ./db/mysql:/var/lib/mysql
+    #     ports:
+    #         - '3306:3306'
+    #     environment:
+    #         - MYSQL_DATABASE=roundcube
+    #         - MYSQL_ROOT_PASSWORD=root
+    #         # - MYSQL_ROOT_PASSWORD=roundcube2023
+    #         # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    #         # - MYSQL_ROOT_HOST="%"
+    #         # - MYSQL_DATABASE=roundcube
+    #         # - MYSQL_USER=user1
+    #         # - MYSQL_PASSWORD=passuser1
+    #     networks:
+    #         - custom_network
     # roundcubemail:
     #     image: roundcube/roundcubemail:latest
     #     container_name: roundcubemail

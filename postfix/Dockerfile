@@ -29,9 +29,7 @@ RUN sed -i 's/^# *mail_location = maildir:~\/Maildir/mail_location = maildir:~\/
 
 EXPOSE 25 110 143 995
 
-RUN service rsyslog restart
-RUN service postfix restart
-RUN service dovecot restart
-# RUN service apache2 restart
 
-CMD ["tail", "-f", "/var/log/mail.log"]
+ADD run.sh /
+RUN chmod +x run.sh
+ENTRYPOINT ["/run.sh"]

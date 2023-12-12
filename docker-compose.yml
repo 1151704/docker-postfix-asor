@@ -54,7 +54,8 @@ services:
             # - MYSQL_USER=user1
             # - MYSQL_PASSWORD=passuser1
         networks:
-            - custom_network
+            custom_network:
+                ipv4_address: 172.19.0.23
     # roundcubemail:
     #     image: roundcube/roundcubemail:latest
     #     container_name: roundcubemail
@@ -87,5 +88,3 @@ networks:
       config:
         - subnet: 172.19.0.0/24
           gateway: 172.19.0.1
-          aux_addresses:
-            asor-db: 172.19.0.23

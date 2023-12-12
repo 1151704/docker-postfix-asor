@@ -21,54 +21,60 @@ services:
         container_name: asor-postfix
         restart: always
         hostname: postfixasor.com
+        depends_on:
+            - db
+        links:
+            - db
         expose:
             - '25'
+            - '80'
             - '110'
             - '143'
             - '995'
         ports:
             - '25:25'
+            - '80:80'
             - '110:110'
             - '143:143'
             - '995:995'
         networks:
             - custom_network
-    roundcubedb:
+    db:
         image: mysql:5.7
-        container_name: roundcubedb
+        container_name: asor-db
         volumes:
             - ./db/mysql:/var/lib/mysql
         ports:
             - 34010:5432
             - 33006:3306
         environment:
-            - MYSQL_ROOT_PASSWORD=roundcube-mysql-pw
-            - MYSQL_DATABASE=roundcubemail
+            - MYSQL_ROOT_PASSWORD=roundcude2023
+            - MYSQL_DATABASE=asor-roundcude
         networks:
             - custom_network
-    roundcubemail:
-        image: roundcube/roundcubemail:latest
-        container_name: roundcubemail
-        hostname: mail.postfixasor.com
-        depends_on:
-            - roundcubedb
-        links:
-            - roundcubedb
-        volumes:
-            - ./www:/var/www/html
-            - ./roundcube:/var/roundcube/config/
-        ports:
-            - '9001:80'
-        environment:
-            - ROUNDCUBEMAIL_DB_TYPE=mysql
-            - ROUNDCUBEMAIL_DB_HOST=roundcubedb
-            - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
-            - ROUNDCUBEMAIL_SKIN=elastic
-            - ROUNDCUBEMAIL_DEFAULT_HOST=mail.postfixasor.com
-            - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
-            - ROUNDCUBEMAIL_SMTP_PORT=25
-        networks:
-            - custom_network
+    # roundcubemail:
+    #     image: roundcube/roundcubemail:latest
+    #     container_name: roundcubemail
+    #     hostname: mail.postfixasor.com
+    #     depends_on:
+    #         - roundcubedb
+    #     links:
+    #         - roundcubedb
+    #     volumes:
+    #         - ./www:/var/www/html
+    #         - ./roundcube:/var/roundcube/config/
+    #     ports:
+    #         - '9001:80'
+    #     environment:
+    #         - ROUNDCUBEMAIL_DB_TYPE=mysql
+    #         - ROUNDCUBEMAIL_DB_HOST=roundcubedb
+    #         - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
+    #         - ROUNDCUBEMAIL_SKIN=elastic
+    #         - ROUNDCUBEMAIL_DEFAULT_HOST=mail.postfixasor.com
+    #         - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
+    #         - ROUNDCUBEMAIL_SMTP_PORT=25
+    #     networks:
+    #         - custom_network
 
 networks:
   custom_network:

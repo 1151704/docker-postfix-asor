@@ -21,6 +21,8 @@ services:
         container_name: asor-postfix
         restart: always
         hostname: postfixasor.com
+        volumes:
+            - ./mails:/Maildir
         expose:
             - '25'
             - '110'

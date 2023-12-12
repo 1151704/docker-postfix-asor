@@ -2,7 +2,7 @@
 
 El siguiente contenedor configura un servidor de correos con postfix.
 
-## Instalar 
+## Instalar Docker
 
 ```
 chmod +x install-docker.sh
@@ -10,13 +10,13 @@ chmod +x install-docker.sh
 apt install docker-compose 
 ```
 
-### Configure el hostname
+### Configurar el hostname
 
 ```
 hostnamectl set-hostname postfixasor.com
 ```
 
-### Configure los nameserver
+### Configurar los nameserver
 
 Configure con el editor de texto de su preferencia el archivo: resolv.conf
 Adicione el nameserver con la ip del host, y nombre del dominio
@@ -31,7 +31,7 @@ options edns0 trust-ad
 search .
 ```
 
-### Configure los DNS del host
+### Configurar los DNS del host
 
 En Windows debe configurar el protocoto (TCP/IPv4)
 
@@ -40,11 +40,19 @@ En Windows debe configurar el protocoto (TCP/IPv4)
 
 ## Docker compose
 
+### Levantar servicios
+
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
-### Error de puerto:
+### Bajar servicios
+
+```
+docker-compose down
+```
+
+### Error de puerto 53:
 
 Si se encuentra con el siguiente error:
 *Error starting userland proxy: listen tcp4 0.0.0.0:53: bind: address already*
@@ -54,8 +62,8 @@ Ejecute el siguiente comando e intente de nuevo ejecutar el docker-compose:
 systemctl stop systemd-resolved
 ```
 
-## Crear usuarios
+## Crear usuarios adicionales
 
 ```
-docker exec asor-postfix create_user.sh {user} {password}
+docker exec asor-postfix create-user.sh {user} {password}
 ```

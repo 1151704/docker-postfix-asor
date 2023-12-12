@@ -49,7 +49,7 @@ services:
     roundcubemail:
         image: roundcube/roundcubemail:latest
         container_name: roundcubemail
-        hostname: mail.postfixasor.com
+        hostname: postfixasor.com
         depends_on:
             - roundcubedb
         links:
@@ -72,8 +72,8 @@ services:
 
 networks:
   custom_network:
-    driver: bridge
-    name: custom_network
-    ipam: 
-      config:
-        - subnet: 172.19.0.0/24
+    # driver: bridge
+    # name: custom_network
+    # ipam: 
+    #   config:
+    #     - subnet: 172.19.0.0/24

@@ -33,6 +33,5 @@ EXPOSE 25 80 110 143 995
 RUN service postfix restart
 RUN service dovecot restart
 RUN service apache2 restart
-RUN service roundcube restart
 
 CMD ["apache2ctl", "-D", "FOREGROUND"]

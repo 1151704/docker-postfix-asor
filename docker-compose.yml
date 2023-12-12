@@ -21,8 +21,8 @@ services:
         container_name: asor-postfix
         restart: always
         hostname: postfixasor.com
-        links:
-            - dbmysql:dbmysql
+        depends_on:
+            - dbmysql
         expose:
             - '25'
             - '80'
@@ -43,14 +43,16 @@ services:
         volumes:
             - ./db/mysql:/var/lib/mysql
         ports:
-            - 3306:3306
+            - '3306:3306'
         environment:
-            - MYSQL_ROOT_PASSWORD=roundcube2023
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_ROOT_HOST="%"
             - MYSQL_DATABASE=roundcube
-            - MYSQL_USER=user1
-            - MYSQL_PASSWORD=passuser1
+            - MYSQL_ROOT_PASSWORD=root
+            # - MYSQL_ROOT_PASSWORD=roundcube2023
+            # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            # - MYSQL_ROOT_HOST="%"
+            # - MYSQL_DATABASE=roundcube
+            # - MYSQL_USER=user1
+            # - MYSQL_PASSWORD=passuser1
         networks:
             - custom_network
     # roundcubemail:

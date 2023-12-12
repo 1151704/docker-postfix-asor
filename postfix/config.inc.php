@@ -4,7 +4,7 @@ $config = [];
 
 // DATABASE
 # include_once("/etc/roundcube/debian-db-roundcube.php");
-$config['db_dsnw'] = 'mysql://user1:passuser1@dbmysql:3306/roundcube';
+$config['db_dsnw'] = 'mysql://root:root@dbmysql:3306/roundcube';
 
 // The IMAP host chosen to perform the log-in.
 $config['default_host'] = 'postfixasor.com';

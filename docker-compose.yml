@@ -42,6 +42,8 @@ services:
         restart: always
         ports:
             - 8080:8080
+        networks:
+            - custom_network
     dbmysql:
         image: mysql:5.7
         container_name: asor-db
@@ -59,8 +61,7 @@ services:
             # - MYSQL_USER=user1
             # - MYSQL_PASSWORD=passuser1
         networks:
-            custom_network:
-                ipv4_address: 172.19.0.23
+            custom_network
     # roundcubemail:
     #     image: roundcube/roundcubemail:latest
     #     container_name: roundcubemail

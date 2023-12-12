@@ -10,13 +10,20 @@ RUN apt-get install --assume-yes postfix
 RUN apt-get install net-tools nano apache2 bsd-mailx dovecot-pop3d dovecot-imapd -y
 
 RUN { \
+        echo mysql-server mysql-server/root_password password 'root'; \
+        echo mysql-server mysql-server/root_password password 'root'; \
+    } | debconf-set-selections
+RUN apt-get install -y mysql-server
+RUN service mysql start
+
+RUN { \
         echo roundcube-core roundcube/dbconfig-install boolean true; \
         echo roundcube-core roundcube/mysql/admin-pass password 'root'; \
         echo roundcube-core roundcube/mysql/app-pass password 'root'; \
         echo roundcube-core roundcube/app-password-confirm password 'root'; \
         echo roundcube-core roundcube/mysql/admin-user string 'root'; \
         echo roundcube-core roundcube/db/app-user string 'roundcube'; \
-        echo roundcube-core roundcube/db/dbname string 'roundcubedb'; \
+        echo roundcube-core roundcube/db/dbname string 'roundcube'; \
     } | debconf-set-selections
 RUN apt-get install --assume-yes roundcube
 

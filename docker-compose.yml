@@ -21,8 +21,6 @@ services:
         container_name: asor-postfix
         restart: always
         hostname: postfixasor.com
-        depends_on:
-            - dbmysql
         expose:
             - '25'
             - '80'
@@ -42,7 +40,7 @@ services:
         container_name: asor-adminer
         restart: always
         ports:
-            - 8080:8080
+            - '8080:8080'
         networks:
             - custom_network
     dbmysql:

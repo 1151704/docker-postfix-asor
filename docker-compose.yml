@@ -99,6 +99,7 @@ services:
     roundcubemail:
         image: roundcube/roundcubemail:latest
         container_name: roundcubemail
+        hostname: postfixasor.com
     #    restart: unless-stopped
         depends_on:
             - roundcubedb

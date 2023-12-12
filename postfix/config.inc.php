@@ -3,7 +3,7 @@
 $config = [];
 
 // DATABASE
-$config['db_dsnw'] = 'mysql://root:roundcube2023@dbmysql:3306/roundcube';
+$config['db_dsnw'] = 'mysql://user1:roundcube2023@dbmysql:3306/roundcube';
 
 // The IMAP host chosen to perform the log-in.
 $config['default_host'] = 'postfixasor.com';

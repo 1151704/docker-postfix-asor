@@ -48,8 +48,8 @@ services:
             - 34010:5432
             - 33006:3306
         environment:
-            - MYSQL_ROOT_PASSWORD=roundcude2023
-            - MYSQL_DATABASE=roundcude
+            - MYSQL_ROOT_PASSWORD=roundcube2023
+            - MYSQL_DATABASE=roundcube
             - MYSQL_USER=user1
             - MYSQL_PASSWORD=passuser1
         networks:

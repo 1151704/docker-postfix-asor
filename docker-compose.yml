@@ -116,7 +116,7 @@ services:
             - ROUNDCUBEMAIL_DB_PASSWORD=roundcube-mysql-pw
             - ROUNDCUBEMAIL_SKIN=elastic
             - ROUNDCUBEMAIL_DEFAULT_HOST=postfixasor.com
-            - ROUNDCUBEMAIL_SMTP_SERVER=postfixasor.com
+            - ROUNDCUBEMAIL_SMTP_SERVER=smtp.postfixasor.com
             - ROUNDCUBEMAIL_SMTP_PORT=25
 networks:
   custom_network:

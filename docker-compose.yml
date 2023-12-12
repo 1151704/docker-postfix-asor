@@ -47,6 +47,7 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=roundcube2023
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_ROOT_HOST="%"
             - MYSQL_DATABASE=roundcube
             - MYSQL_USER=user1
             - MYSQL_PASSWORD=passuser1
